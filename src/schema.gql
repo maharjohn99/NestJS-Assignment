@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type AuthType {
+  user: User!
+  token: String!
+}
+
+type Comment {
+  postId: String!
+  comments: String!
+  authorId: String!
+  commentDate: String!
+}
+
+type Post {
+  id: ID!
+  userId: String!
+  totalComments: Int
+  comment: [Comment!]
+  postTitle: String!
+  postDescription: String!
+  type: String!
+}
+
+type Query {
+  me: User!
+  user(id: String!): User!
+  users: [User!]!
+  post(id: String!): Post!
+  PrivatePosts(id: String!): [Post!]!
+  PostWithMaxComment: [Post!]!
+  posts: [Post!]!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  UpdateUser(data: UpdateUserInput!): User!
+  login(data: AuthInput!): AuthType!
+  createPost(data: CreatePostInput!): Post!
+  createComment(data: CreateCommentInput!): Post!
+  UpdatePost(data: UpdatePostInput!): Post!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  id: String!
+  name: String!
+  email: String!
+  password: String!
+}
+
+input AuthInput {
+  email: String!
+  password: String!
+}
+
+input CreatePostInput {
+  postTitle: String!
+  postDescription: String!
+  type: String!
+  userId: String!
+}
+
+input CreateCommentInput {
+  comments: String!
+  postId: String!
+  authorId: String!
+  commentDate: String!
+}
+
+input UpdatePostInput {
+  id: String!
+  postTitle: String!
+  postDescription: String!
+  type: String!
+}
